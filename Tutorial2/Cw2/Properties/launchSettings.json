@@ -2,7 +2,7 @@
   "profiles": {
     "Cw2": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\oloko\\Documents\\Studia\\4Semestr\\aaaInternetowe\\APBD\\Lecture 2\\dane.csv\" \"C:\\Users\\oloko\\Documents\\Studia\\4Semestr\\aaaInternetowe\\APBD\\Lecture 2\\result.xml\" jsssx"
+      "commandLineArgs": "\"C:\\Users\\oloko\\Documents\\Studia\\4Semestr\\aaaInternetowe\\APBD\\Lecture 2\\dane.csv\" \"C:\\Users\\oloko\\Documents\\Studia\\4Semestr\\aaaInternetowe\\APBD\\Lecture 2\\result.xml\" json"
     }
   }
 }
