@@ -71,9 +71,7 @@ namespace Cw2
             //list.Add(st);
 
 
-            //FileStream writer = new FileStream(@"data.xml", FileMode.Create);
-            //string header= "university " + "createdAt" + DateTime.Now.ToString();
-            //Console.WriteLine(header);
+            FileStream writerXML = new FileStream(@"data.xml", FileMode.Create);
             University u = new University { CreatedAt = DateTime.Now, Author = "Jan Kowalski", students = list };
             UniversityWrapper uw = new UniversityWrapper { University = u };
             XmlSerializer serializer = new XmlSerializer(typeof(University));
@@ -81,6 +79,7 @@ namespace Cw2
             File.WriteAllText("data.json", jsonString);
                                        //new XmlRootAttribute("university"));
             serializer.Serialize(writer, u);
+            serializer.Serialize(writerXML, u);
             //serializer.Serialize(writer, list);
 
         }
