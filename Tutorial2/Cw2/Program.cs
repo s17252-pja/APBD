@@ -19,8 +19,8 @@ namespace Cw2
             ;
             FileStream writer;
             if (args.Length > 0) { path = args[0]; } else { path = @"Data\dane.csv"; Console.WriteLine("No file provided as the first argument, using built-in dane.csv \n"); };
-            if (args[1].Length > 0) { writer = new FileStream(args[1], FileMode.Create); } else { writer = new FileStream(@"data.xml", FileMode.Create); Console.WriteLine("No output file argument specified. Using default data.xml"); }
-            if (args[2].Length > 0 && args[2].Contains("xml")) { Console.WriteLine("Running XML mode \n"); mode = "xml"; } else if (args[2].Contains("json")) { Console.WriteLine("Running JSON mode \n"); mode = "json"; } else { Console.WriteLine("Invalid output type provided \n"); }
+            if (args[1].Length > 0) { writer = new FileStream(args[1], FileMode.Create); } else { writer = new FileStream(@"data.xml", FileMode.Create); Console.WriteLine("No output file or invalid argument specified. Using default data.xml"); }
+            if (args[2].Length > 0 && args[2].Contains("xml")) { Console.WriteLine("Running XML mode \n"); mode = "xml"; } else if (args[2].Contains("json")) { Console.WriteLine("Running JSON mode \n"); mode = "json"; } else { Console.WriteLine("Invalid output type provided \n"); mode = "invalid"; }
 
 
             //Wczytywanie 
@@ -52,7 +52,9 @@ namespace Cw2
             }
             catch (FileNotFoundException ex)
             {
+
                 Console.WriteLine(ex);
+                Console.WriteLine("File to read from was not found! \n");
             }
             //XML
             //var list = new List<Student>();
@@ -86,9 +88,13 @@ namespace Cw2
                 FileStream writerXML = new FileStream(@"data.xml", FileMode.Create);
                 serializer.Serialize(writerXML, u);
             }
-            else
+            else if(mode.Contains("invalid"))
             {
                 Console.WriteLine("You did not provide third parameter! Not writing to any format! \n");
+            }
+            else
+            {
+                Console.WriteLine("Unknown state of writing mode, report this to dev! \n");
             }
             //serializer.Serialize(writer, list);
         }
