@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Cw2.Models
@@ -20,6 +18,7 @@ namespace Cw2.Models
         // private string _nazwisko;
         [XmlElement(elementName: "lname")]
         public string Nazwisko { get; set; }
+
         /*{
             get { return _nazwisko; }
             set
@@ -28,18 +27,24 @@ namespace Cw2.Models
                 _nazwisko = value;
             }
         }*/
+
         [XmlElement(elementName: "birthdate")]
         public string Birthdate { get; set; }
+
         [XmlElement(elementName: "email")]
         public string Email { get; set; }
+
         [XmlElement(elementName: "mothersName")]
         public string MothersName { get; set; }
+
         [XmlElement(elementName: "fathersName")]
         public string FathersName { get; set; }
+
         [XmlElement(elementName: "studies")]
         public Studies Studies { get; set; }
-        public Student()    {  }
-    }
-   
-}
 
+        public Student()
+        {
+        }
+    }
+}
