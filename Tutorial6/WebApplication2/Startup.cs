@@ -110,21 +110,6 @@ namespace WebApplication2
             //});
 
             //app.UseMiddleware<LoggingMiddleware>();
-            app.Use(async (context, next) =>
-            {
-                if (!context.Request.Headers.ContainsKey("Index"))
-                {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    await context.Response.WriteAsync("Nie poda³eœ indeksu");
-                    return;
-                }
-
-                string index = context.Request.Headers["Index"].ToString();
-                //check in db
-
-
-                await next();
-            });
             
 
 
