@@ -16,6 +16,9 @@ namespace Wyklad5.Controllers
     [ApiController] //-> implicit model validation
     public class EnrollmentsController : ControllerBase
     {
+
+        private const string ConString = "Data Source=db-mssql;Initial Catalog=s17252;Integrated Security=True";
+
         private IStudentDbService _service;
 
         public EnrollmentsController(IStudentDbService service)
@@ -29,8 +32,34 @@ namespace Wyklad5.Controllers
         {
             _service.EnrollStudent(request);
             var response = new EnrollStudentResponse();
-            //response.LastName = st.LastName;
-            //...
+/*
+            using (SqlConnection con = new SqlConnection(ConString))
+            using (SqlCommand com = new SqlCommand())
+            {
+                //response.LastName = st.LastName;
+                //...
+                com.Connection = con;
+                com.CommandText = request.ToString();
+
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    var enroll = new Enrollment();
+                    enroll.
+                    enroll.LastName = dr["LastName"].ToString();
+                    enroll.BirthDate = dr["BirthDate"].ToString();
+                    enroll.Enrollment = new Enrollment
+                    {
+                        Semester = (int)(dr["Semester"]),
+                        Study = new Studies { Name = dr["Name"].ToString() }
+                    };
+                    students.Add(st);
+                }
+
+                con.Dispose();
+            }
+    */        
 
             return Ok(response);
         }

@@ -41,10 +41,10 @@ namespace Wyklad5.Controllers
                     st.FirstName = dr["FirstName"].ToString();
                     st.LastName = dr["LastName"].ToString();
                     st.BirthDate = dr["BirthDate"].ToString();
-                    st.Enrollment = new Enrollment
+                    st.IdEnrollment = new Enrollment
                     {
                         Semester = (int)(dr["Semester"]),
-                        study = new Studies { Name = dr["Name"].ToString() }
+                        Study = new Studies { Name = dr["Name"].ToString() }
                     };
                     students.Add(st);
                 }

@@ -10,6 +10,7 @@ namespace Wyklad5.Services
 {
     public class SqlServerStudentDbService : IStudentDbService
     {
+        private const string ConString = "Data Source=db-mssql;Initial Catalog=s17252;Integrated Security=True";
 
         public SqlServerStudentDbService(/*.. */ )
         {
@@ -32,7 +33,7 @@ namespace Wyklad5.Services
             //Micro ORM object-relational mapping
             //problemami - impedance mismatch
 
-            using (var con = new SqlConnection(""))
+            using (var con = new SqlConnection(ConString))
             using (var com = new SqlCommand())
             {
                 com.Connection = con;
