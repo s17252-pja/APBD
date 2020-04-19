@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Wyklad5.Services;
+using Wyklad4.Services;
 
-namespace Wyklad5
+namespace Wyklad4
 {
     public class Startup
     {
@@ -25,12 +25,8 @@ namespace Wyklad5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //SOLID 
-            //D - dependency injection/inversion
-            //S - single responsibility
-            //L - Liskv Substitute Principle
-            //I - interface segregation
-            services.AddTransient<IStudentDbService, OracleStudentDbService>();
+            //AddSingleton, AddTransient, AddScoped
+            services.AddScoped<IStudentsDal, SqlServerDbDal>();
             services.AddControllers();
         }
 
