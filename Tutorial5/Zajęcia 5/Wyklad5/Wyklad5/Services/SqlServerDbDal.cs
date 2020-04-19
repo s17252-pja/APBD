@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wyklad4.Services
+namespace Wyklad5.Services
 {
     public class SqlServerDbDal : IStudentsDal
     {

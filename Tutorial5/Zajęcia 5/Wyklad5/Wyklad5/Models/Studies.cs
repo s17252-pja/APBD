@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Wyklad4.Models
+namespace Wyklad5.Models
 {
     public class Studies
     {

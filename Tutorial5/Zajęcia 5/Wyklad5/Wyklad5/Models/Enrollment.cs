@@ -1,6 +1,6 @@
-﻿using Wyklad4.Models;
+﻿using Wyklad5.Models;
 
-namespace Wyklad4.Models
+namespace Wyklad5.Models
 {
     public class Enrollment
     {

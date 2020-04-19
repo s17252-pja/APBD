@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Wyklad4.Services;
+using Wyklad5.Services;
 
-namespace Wyklad4
+namespace Wyklad5
 {
     public class Startup
     {

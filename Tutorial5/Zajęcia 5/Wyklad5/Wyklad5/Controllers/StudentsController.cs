@@ -4,10 +4,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Wyklad4.Models;
-using Wyklad4.Services;
+using Wyklad5.Models;
+using Wyklad5.Services;
 
-namespace Wyklad4.Controllers
+namespace Wyklad5.Controllers
 {
     [ApiController]
     [Route("api/students")]

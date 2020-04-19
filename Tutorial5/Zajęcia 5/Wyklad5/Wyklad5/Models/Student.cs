@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Wyklad4.Models;
+using Wyklad5.Models;
 
-namespace Wyklad4
+namespace Wyklad5
 {
     public class Student
     {
