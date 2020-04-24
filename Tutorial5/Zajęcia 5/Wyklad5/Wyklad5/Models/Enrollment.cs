@@ -7,8 +7,8 @@ namespace Wyklad5.Models
     {
         public int IdEnrollment { get; set; }
         public int Semester { get; set; }
-        public Studies Study { get; set; }
         public DateTime StartDate { get; set; }
+        public Studies Study { get; set; }
 
     }
 }

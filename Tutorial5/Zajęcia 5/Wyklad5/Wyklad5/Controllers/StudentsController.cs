@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Wyklad5.Models;
 using Wyklad5.Services;
@@ -13,48 +10,37 @@ namespace Wyklad5.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
+        private readonly IDbService _dbService;
+
         private const string ConString = "Data Source=db-mssql;Initial Catalog=s17252;Integrated Security=True";
-
-        private IStudentsDal _dbService;
-
+        
+        
+        /*
         public StudentsController(IStudentsDal dbService)
         {
             _dbService = dbService;
         }
 
-        [HttpGet]
-        public IActionResult GetStudents([FromServices] IStudentsDal dbService)
+        private IDbService _dbService;
+        */
+        public StudentsController(IDbService dbService)
         {
-            var students = new List<Student>();
-
-            using (SqlConnection con = new SqlConnection(ConString))
-            using (SqlCommand com = new SqlCommand())
-            {
-                com.Connection = con;
-                com.CommandText = "select firstname, lastname, birthdate, name, semester from student, enrollment, studies where student.idenrollment = enrollment.idenrollment and studies.idstudy = enrollment.idstudy";
-
-                con.Open();
-                SqlDataReader dr = com.ExecuteReader();
-                while (dr.Read())
-                {
-                    var st = new Student();
-                    st.FirstName = dr["FirstName"].ToString();
-                    st.LastName = dr["LastName"].ToString();
-                    st.BirthDate = dr["BirthDate"].ToString();
-                    st.IdEnrollment = new Enrollment
-                    {
-                        Semester = (int)(dr["Semester"]),
-                        Study = new Studies { Name = dr["Name"].ToString() }
-                    };
-                    students.Add(st);
-                }
-
-                con.Dispose();
-            }
-
-            return Ok(students);
+            _dbService = dbService;
         }
 
+        //2. Passing the data by QueryString = limited, friendly urls
+        //   data within query string is encoded
+        //[HttpGet]
+        //public IActionResult GetStudents(string orderBy = "firstName") //action method
+        //{
+        //  return Ok(_dbService.GetStudents());
+        //}
+
+        [HttpGet]
+        public IActionResult GetStudents(string orderBy)
+        {
+            return Ok(_dbService.GetStudents());
+        }
         [HttpGet("{indexNumber}")]
         public IActionResult GetStudent(string indexNumber)
         {

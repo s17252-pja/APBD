@@ -1,73 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Wyklad5.DTOs.Requests;
-using Wyklad5.DTOs.Responses;
+﻿using Wyklad5.Services;
 using Wyklad5.Models;
-using Wyklad5.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Wyklad5.Controllers
 {
+    [ApiController]
     [Route("api/enrollments")]
-    [ApiController] //-> implicit model validation
     public class EnrollmentsController : ControllerBase
     {
+        private readonly IDbService _dbService;
 
-        private const string ConString = "Data Source=db-mssql;Initial Catalog=s17252;Integrated Security=True";
-
-        private IStudentDbService _service;
-
-        public EnrollmentsController(IStudentDbService service)
+        public EnrollmentsController(IDbService dbService)
         {
-            _service = service;
+            _dbService = dbService;
         }
-
 
         [HttpPost]
-        public IActionResult EnrollStudent(EnrollStudentRequest request)
+        public IActionResult CreateEnrollment(CreateEnrollmentDto createEnrollmentDto)
         {
-            _service.EnrollStudent(request);
-            var response = new EnrollStudentResponse();
-/*
-            using (SqlConnection con = new SqlConnection(ConString))
-            using (SqlCommand com = new SqlCommand())
+            try
             {
-                //response.LastName = st.LastName;
-                //...
-                com.Connection = con;
-                com.CommandText = request.ToString();
-
-                con.Open();
-                SqlDataReader dr = com.ExecuteReader();
-                while (dr.Read())
-                {
-                    var enroll = new Enrollment();
-                    enroll.
-                    enroll.LastName = dr["LastName"].ToString();
-                    enroll.BirthDate = dr["BirthDate"].ToString();
-                    enroll.Enrollment = new Enrollment
-                    {
-                        Semester = (int)(dr["Semester"]),
-                        Study = new Studies { Name = dr["Name"].ToString() }
-                    };
-                    students.Add(st);
-                }
-
-                con.Dispose();
+                Enrollment enrollment = _dbService.EnrollStudent(createEnrollmentDto);
+                return Created($"/api/enrollments/{enrollment.IdEnrollment}", enrollment);
             }
-    */        
-
-            return Ok(response);
+            catch (StudiesNotFoundException e)
+            {
+                return BadRequest(new BadRequestDto("Provided studies not found!"));
+            }
+            catch (StudentAlreadyExistsException e)
+            {
+                return BadRequest(new BadRequestDto("Student with such Index Number already exist!"));
+            }
         }
-
-        //..
-
-        //..
-
-
     }
 }
