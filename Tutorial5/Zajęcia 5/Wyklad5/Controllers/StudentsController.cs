@@ -10,7 +10,7 @@ namespace Wyklad5.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        private readonly IDbService _dbService;
+        private readonly IStudentDbService _dbService;
 
         private const string ConString = "Data Source=db-mssql;Initial Catalog=s17252;Integrated Security=True";
         
@@ -23,7 +23,7 @@ namespace Wyklad5.Controllers
 
         private IDbService _dbService;
         */
-        public StudentsController(IDbService dbService)
+        public StudentsController(IStudentDbService dbService)
         {
             _dbService = dbService;
         }

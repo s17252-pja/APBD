@@ -26,7 +26,7 @@ namespace Wyklad5
         public void ConfigureServices(IServiceCollection services)
         {
             //AddSingleton, AddTransient, AddScoped
-            services.AddScoped<IStudentsDal, SqlServerDbDal>();
+            services.AddScoped<IStudentDbService, SqlServerDbService>();
             services.AddControllers();
         }
 

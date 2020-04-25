@@ -12,6 +12,6 @@ namespace Wyklad5
         public string LastName { get; set; }
         public string IndexNumber { get; set; }
         public DateTime BirthDate { get; set; }
-        public Enrollment IdEnrollment { get; set; }
+        public int IdEnrollment { get; set; }
     }
 }
